@@ -1,3 +1,5 @@
+import Pizza from "./pizza.js";
+
 window.onload = () => {
     const button = document.querySelector("button");
     button.addEventListener("click", () => {
@@ -14,21 +16,6 @@ const timeToCook = {
 
 function orderPizza(flavor) {
     const time = timeToCook[flavor];
-    const element = addOrderOnScreen(flavor);
-    setTimeout(() => {
-        element.querySelector("span").textContent = "Pronto";
-    }, time);
-}
 
-function addOrderOnScreen(flavor) {
-    const p = document.createElement("p");
-    const span = document.createElement("span");
-    span.textContent = "Fazendo!";
-
-    p.textContent = `Um pedido de pizza acabou de ser realizado. O sabor é ${flavor} | Status: `;
-    p.append(span);
-
-    document.body.append(p);
-
-    return p;
+    new Pizza(flavor, time).make();
 }
